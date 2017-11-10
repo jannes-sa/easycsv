@@ -10,13 +10,14 @@ import (
 )
 
 // WriteCSVData ...
-func WriteCSVData(t interface{}, pathfile string) {
+func WriteCSVData(t interface{}, pathfile string) (err error) {
 	data := manipulateReflection(t)
 
 	file, err := os.Create(pathfile)
 	if err != nil {
 		fmt.Println("Fail Create File")
-		panic(err)
+		fmt.Println(err)
+		return
 	}
 	defer file.Close()
 
@@ -27,7 +28,8 @@ func WriteCSVData(t interface{}, pathfile string) {
 		err := writer.Write(value)
 		if err != nil {
 			fmt.Println("Fail Write CSV")
-			panic(err)
+			fmt.Println(err)
+			return
 		}
 	}
 
