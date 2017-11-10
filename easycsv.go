@@ -396,7 +396,7 @@ func parseStructTag(
 	converters *[]reflect.Value,
 	errors *[]string) {
 	tag := field.Tag
-	name := tag.Get("name")
+	name := tag.Get("csv")
 	index := tag.Get("index")
 	if name == "" && index == "" {
 		*errors = append(*errors, fmt.Sprintf("Please specify name or index to the struct field: %s", field.Name))
