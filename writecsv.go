@@ -25,14 +25,15 @@ func WriteCSVData(t interface{}, pathfile string) (err error) {
 	defer writer.Flush()
 
 	for _, value := range data {
-		err := writer.Write(value)
-		if err != nil {
+		errD := writer.Write(value)
+		if errD != nil {
 			fmt.Println("Fail Write CSV")
-			fmt.Println(err)
+			fmt.Println(errD)
+			err = errD
 			return
 		}
 	}
-
+	return
 }
 
 func manipulateReflection(t interface{}) (data [][]string) {
